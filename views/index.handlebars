@@ -1,0 +1,43 @@
+<div>
+    <button class="submit-btn">~Scrape New Articles~</button>
+    <h1>Article List</h1>
+    <ul class="article-list">
+    {{#each articles}}                   
+        <li id="{{_id}}"> {{title}} - {{link}} 
+            {{!-- <a href class="delete-item" data-id="{{_id}}">🗑</a> --}}
+        </li>
+    {{/each}}
+    </ul>
+</div>
+{{!--
+<script>
+    $(document).ready(() => {
+        $(".loading").hide();
+       
+        $(document).on("click", ".delete-item", function (e) {
+            e.preventDefault();
+            const id = $(this).data("id");
+            console.log(id);
+            
+            $.ajax({
+                url: `/api/products/${id}`,
+                method: "DELETE"
+            }).then(result=> $(`#${id}`).remove());
+        })
+
+        $(".submit-btn").on("click", ()=> {
+            $(".loading").show();
+            const name = $(".product-name").val().trim();
+            const price = $(".product-price").val().trim();
+            $.ajax({
+                method: "POST",
+                url: "/api/products/new",
+                data: {name, price}
+            }).then((data)=> {
+                $(".loading").hide();
+                const html = `<li>${data.name} - ${data.price} 🗑</li>`;
+                $(".product-list").append(html);
+            });
+        });
+    });
+</script> --}}
