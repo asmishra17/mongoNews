@@ -52,16 +52,20 @@ module.exports = {
                 res.json(err);
             });
     }, updateOne: function (req, res) {
-        db.Article.updateOne({
+        const _id = req.params.id
+        const saved = req.body.saved
+        db.Article.update({
             saved: req.body.saved
         }, {
             where: {
                 _id: req.params.id
             }
         })
-        .then(function(dbArticle) {
-            res.json(dbArticle);
-        });
+        db.Article
+            .update({_id}, {$set: { saved: saved }})
+            .then(function(dbArticle) {
+                res.json(dbArticle);
+            });
     }
 };
 

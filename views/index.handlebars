@@ -31,7 +31,7 @@
         $(document).on("click", ".save-item", function (event) {
             event.preventDefault();
             const id = $(this).data("id");
-            console.log(id);
+            console.log(`Article ID is ${id}`);
             
             $.ajax({
                 url: `/api/article/${id}`,
